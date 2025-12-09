@@ -57,19 +57,6 @@ Build a real-time **event-driven log monitoring** system on AWS that:
   - Systems Manager (Session Manager + Run Command)
 
 ---
-
-## 📁 Project Structure
-
-```text
-event-driven-log-monitoring/
-│
-├─ README.md
-├─ architecture/
-│   └─ (add your diagram here, e.g. event-driven-architecture.png)
-├─ scripts/
-│   ├─ user-data.sh
-│   ├─ cloudwatch-config.json
-│   └─ lambda-process-logs.py
 ├─ docs/
 │   ├─ lifecycle-config.md
 │   └─ cloudwatch-alert.md
