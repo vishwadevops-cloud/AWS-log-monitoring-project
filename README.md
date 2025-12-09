@@ -1,64 +1,56 @@
-# AWS-log-monitoring-project
-Automated Log Monitoring &amp; Alerting System using AWS CloudWatch, SNS, and EC2
-# 🚀 Event-Driven Log Monitoring & Alerting System (AWS)
+# 🚀 AWS Event-Driven Log Monitoring & Alerting System
 
-## 🎯 Project Goal
-
-Build a real-time **event-driven log monitoring** system on AWS that:
-
-- Collects application logs from EC2
-- Sends alerts when error patterns appear
-- Processes logs asynchronously
-- Archives old logs cost-effectively (S3 → Glacier)
-- Scales automatically when load increases
+This project implements a real-time monitoring and alerting pipeline on AWS.  
+It detects error patterns from application logs and sends instant notifications to the DevOps team.
 
 ---
 
-## 🏗 Architecture Overview
+## 📍 Architecture Overview
 
-**Flow:**
+| AWS Service | Role |
+|------------|------|
+| EC2 | Application + log generation |
+| CloudWatch Logs | Central log collection |
+| CloudWatch Metric Filter | Scans for the keyword **"ERROR"** |
+| CloudWatch Alarm | Triggers when error count threshold is crossed |
+| SNS | Sends alert via email/SMS |
+| IAM | Access permissions for EC2 to push logs |
+| S3 + Lifecycle | Archives old logs → moves to Glacier to reduce cost |
+| SSM | Log cleanup/maintenance automation |
 
-1. Application running on **EC2 instances** generates log files.
-2. **CloudWatch Agent** on EC2 streams log file `/var/log/app-error.log` to **CloudWatch Logs**.
-3. A **metric filter** in CloudWatch detects lines containing `ERROR`.
-4. When errors exceed a threshold, a **CloudWatch Alarm → SNS topic** sends Email/SMS alerts.
-5. The app also pushes critical error events to **SQS**, which triggers a **Lambda** function for async processing.
-6. Logs are exported/archived to **S3** and automatically transitioned to **S3 Glacier** via **Lifecycle rules** for cost optimisation.
-7. **CloudTrail** tracks security-related changes (IAM, EC2, S3).
-8. **Systems Manager (SSM)** runs log cleanup and patching commands on EC2.
-9. **ALB + Auto Scaling Group** scale the log-generating application based on load.
+---
+
+## 🔥 Key Features
+✔ EC2 application generates logs at `/var/log/app-error.log`  
+✔ CloudWatch Agent streams logs automatically  
+✔ Metric filter detects `"ERROR"` messages  
+✔ SNS alert is triggered when errors ≥ 5 in 1 minute  
+✔ Logs archived to S3 with **Lifecycle → Glacier** for cost optimisation  
 
 ---
 
-## 🔧 AWS Services Used
-
-- **Compute & Networking**
-  - EC2 (app servers)
-  - VPC (public + private subnets, NAT)
-  - Elastic Load Balancer (ALB)
-  - Auto Scaling Group
-
-- **Monitoring & Logging**
-  - CloudWatch Logs
-  - CloudWatch Metric Filters & Alarms
-
-- **Messaging & Processing**
-  - SNS (alerts)
-  - SQS (log events queue)
-  - Lambda (process log events)
-
-- **Storage & Cost Optimisation**
-  - S3 (log archive)
-  - S3 Lifecycle → Glacier Flexible Retrieval
-
-- **Security & Management**
-  - IAM Roles (EC2 → CloudWatch, S3, SSM)
-  - CloudTrail (audit)
-  - Systems Manager (Session Manager + Run Command)
+## 📁 Project Files
+| File | Purpose |
+|------|---------|
+| `setup.sh` | EC2 bootstrap script to install + configure CloudWatch Agent |
+| `log_generator.py` | Generates continuous INFO + ERROR logs |
+| `docs/cloudwatch-alert.md` | Alarm + SNS setup steps |
+| `docs/lifecycle-config.md` | S3 lifecycle → Glacier costing rule |
+| `screenshots/` | Proof of execution |
 
 ---
-├─ docs/
-│   ├─ lifecycle-config.md
-│   └─ cloudwatch-alert.md
-└─ screenshots/
-    └─ (add screenshots: s3-lifecycle.png, cloudwatch-logs.png, sns-email.png, etc.)
+
+## 📷 Proof of Execution (Screenshots)
+
+### 🔴 CloudWatch Alarm Trigger
+![Alarm Trigger](https://github.com/user-attachments/assets/...)
+
+### 📩 SNS Email Alert
+![Email Alert](https://github.com/user-attachments/assets/...)
+
+### 📜 CloudWatch Live Logs
+![Live Logs](https://github.com/user-attachments/assets/...)
+
+### 🧊 S3 Lifecycle Rule
+![Lifecycle Rule](https://github.com/user-attachments/assets/...)
+
