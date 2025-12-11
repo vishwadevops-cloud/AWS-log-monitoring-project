@@ -42,15 +42,14 @@ It detects error patterns from application logs and sends instant notifications 
 
 ## 📷 Proof of Execution (Screenshots)
 
-### 🔴 CloudWatch Alarm Trigger
-![Alarm Trigger](https://github.com/user-attachments/assets/...)
+### 🔔 CloudWatch Alarm Trigger
+![Alarm Trigger](https://raw.githubusercontent.com/vishwadevops-cloud/AWS-log-monitoring-project/main/Alarm-Graph.png)
 
 ### 📩 SNS Email Alert
-![Email Alert](https://github.com/user-attachments/assets/...)
+![Email Alert](https://raw.githubusercontent.com/vishwadevops-cloud/AWS-log-monitoring-project/main/Email-Alert.png)
 
-### 📜 CloudWatch Live Logs
-![Live Logs](https://github.com/user-attachments/assets/...)
+### 📊 CloudWatch Live Logs
+![Live Logs](https://raw.githubusercontent.com/vishwadevops-cloud/AWS-log-monitoring-project/main/Live-Logs.png)
 
 ### 🧊 S3 Lifecycle Rule
-![Lifecycle Rule](https://github.com/user-attachments/assets/...)
-
+![Lifecycle Rule](https://raw.githubusercontent.com/vishwadevops-cloud/AWS-log-monitoring-project/main/S3_Life_Cycle.png)
